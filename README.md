@@ -29,5 +29,5 @@ aws cloudformation create-stack --template-body file://$PWD/infra/api.yml --stac
 
 ## with a script deply the cloud formation
 ```
-,./deploy.sh
+./deploy.sh
 ```
