@@ -31,3 +31,6 @@ aws cloudformation create-stack --template-body file://$PWD/infra/api.yml --stac
 ```
 ./deploy.sh
 ```
+## for CI/CD pipeline
+##### AWS cloud formation plugins is required in Jenkins
+Jenkinsfile
