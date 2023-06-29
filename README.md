@@ -1,9 +1,9 @@
 
 # How to deploy flask app in ECS cluster
 
-# Prerequiste: Confogure AWS CLI with access and secret key for the user
+## Prerequiste: Confogure AWS CLI with access and secret key for the user
 
-# Run on local
+## Run on local
 ```
 sudo docker build -t flask_docker .
 sudo docker run -p 5000:5000 -dit flask_docker
