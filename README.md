@@ -20,10 +20,10 @@ docker push $IMAGE_REPO:v1
 ```
 ## Create CloudFormation Stacks
 ```
-aws cloudformation create-stack --template-body file://$PWD/infra/vpc.yml --stack-name vpc
-aws cloudformation create-stack --template-body file://$PWD/infra/iam.yml --stack-name iam --capabilities CAPABILITY_IAM
-aws cloudformation create-stack --template-body file://$PWD/infra/app-cluster.yml --stack-name app-cluster
-aws cloudformation create-stack --template-body file://$PWD/infra/api.yml --stack-name api
+aws cloudformation create-stack --template-body file://$PWD/vpc.yml --stack-name vpc
+aws cloudformation create-stack --template-body file://$PWD/iam.yml --stack-name iam --capabilities CAPABILITY_IAM
+aws cloudformation create-stack --template-body file://$PWD/app-cluster.yml --stack-name app-cluster
+aws cloudformation create-stack --template-body file://$PWD/api.yml --stack-name api
 ```
 #### Edit the api.yml to update Image tag/URL under Task > ContainerDefinitions and, <br>
 
