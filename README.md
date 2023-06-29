@@ -1,6 +1,8 @@
 
 # How to deploy flask app in ECS cluster
 
+# Prerequiste: Confogure AWS CLI with access and secret key for the user
+
 # Run on local
 ```
 sudo docker build -t flask_docker .
@@ -21,8 +23,11 @@ docker push $IMAGE_REPO:v1
 aws cloudformation create-stack --template-body file://$PWD/infra/vpc.yml --stack-name vpc
 aws cloudformation create-stack --template-body file://$PWD/infra/iam.yml --stack-name iam --capabilities CAPABILITY_IAM
 aws cloudformation create-stack --template-body file://$PWD/infra/app-cluster.yml --stack-name app-cluster
+aws cloudformation create-stack --template-body file://$PWD/infra/api.yml --stack-name api
 ```
 ## Edit the api.yml to update Image tag/URL under Task > ContainerDefinitions and, <br>
+
+## with a script deply the cloud formation
 ```
-aws cloudformation create-stack --template-body file://$PWD/infra/api.yml --stack-name api
+,./deploy.sh
 ```
