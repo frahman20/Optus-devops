@@ -2,7 +2,6 @@
 env.access_key = AWS_ACCESS_KEY_ID
 env.secret_key = AWS_SECRET_ACCESS_KEY
 env.aws_region = AWS_REGION
-env.aws_cfn_id = CFN_CREDENTIALS_ID 
 
 pipeline {
   agent any
@@ -11,7 +10,6 @@ pipeline {
   parameters {
     string(name: 'STACK_NAME', description: 'Enter the CloudFormation Stack Name.')
     string(name: 'TEMPLATE_NAME', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
-    credentials(name: 'CFN_CREDENTIALS_ID', defaultValue: '', description: 'AWS Account Role.', required: true)
     choice(
       name: 'REGION',
       choices: [
@@ -51,10 +49,9 @@ pipeline {
           container("jenkins-agent") {
             withCredentials([[
               $class: 'AmazonWebServicesCredentialsBinding',
-              credentialsId: "${CFN_CREDENTIALS_ID}",
               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                sh 'scripts/deploy.sh ${STACK_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
+                sh 'scripts/deploy.sh ${STACK_NAME} ${TEMPLATE_NAME} ${REGION}'
             }
           }
         }
